@@ -16,6 +16,11 @@ if(EHP_BUILD_SHARED_LIBS)
   set(BUILD_SHARED_LIBS ON)
 else()
   set(BUILD_SHARED_LIBS OFF)
+  if(MSVC)
+    message(STATUS "compiling with MT runtime library.")
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    add_compile_options($<$<CONFIG:>:/MT> $<$<CONFIG:Debug>:/MTd> $<$<CONFIG:Release>:/MT>)
+  endif()
 endif()
 
 add_library(${PROJECT_NAME}

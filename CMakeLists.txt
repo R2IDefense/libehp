@@ -31,9 +31,9 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
   add_compile_options(/WX)
 else()
   add_compile_options(-Werror)
+  add_compile_options(-fPIC)
 endif()
 
-add_compile_options(-fPIC)
 add_subdirectory(src)
 
 # ---------------------------------------------------------------------------
